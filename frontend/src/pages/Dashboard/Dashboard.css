@@ -1,0 +1,36 @@
+.dashboard {
+  width: 700px;
+  max-width: 90%;
+  margin: 80px auto;
+  padding: 40px;
+  text-align: center;
+}
+
+.dashboard h1 {
+  margin-bottom: 20px;
+}
+
+.dashboard p {
+  font-size: 18px;
+}
+
+.user-info {
+  margin-top: 30px;
+  padding: 25px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.user-info p {
+  margin: 10px 0;
+}
+
+.logout-btn {
+  margin-top: 25px;
+  padding: 12px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

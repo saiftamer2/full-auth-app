@@ -1,0 +1,48 @@
+.loading,
+.error,
+.empty {
+  text-align: center;
+  margin: 60px 0;
+}
+
+.loading h2,
+.error h2,
+.empty h2 {
+  margin-top: 20px;
+  font-size: 28px;
+  color: #333;
+}
+
+.empty p {
+  margin-top: 12px;
+  color: #777;
+  font-size: 18px;
+}
+
+.tasks-title {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto 20px;
+  font-size: 30px;
+  color: #222;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  border: 6px solid #dbeafe;
+  border-top: 6px solid #2563eb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

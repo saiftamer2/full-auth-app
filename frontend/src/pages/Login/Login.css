@@ -1,0 +1,36 @@
+.auth-page {
+  width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+}
+
+.auth-page h1 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.auth-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-page input {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.auth-page button {
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+}
+
+.error {
+  color: red;
+  margin: 0;
+}
