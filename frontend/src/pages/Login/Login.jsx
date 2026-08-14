@@ -2,7 +2,7 @@ import "./Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "https://full-auth-app.vercel.app";
+const API_URL = "/api/auth/login";
 
 function Login() {
   const navigate = useNavigate();

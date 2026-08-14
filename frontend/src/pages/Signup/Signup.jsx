@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Signup.css";
 
-const API_URL = "https://full-auth-app.vercel.app";
+const API_URL = "/api/auth/login";
 
 function Signup() {
   const [formData, setFormData] = useState({
