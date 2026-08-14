@@ -19,7 +19,7 @@ function Dashboard() {
 
       try {
         const response = await fetch(
-          "http://localhost:5000/auth/me",
+          "/api/auth/me",
           {
             headers: {
               Authorization: `Bearer ${token}`,
