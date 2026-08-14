@@ -16,7 +16,7 @@ app.use(express.json());
 // Home Route
 // ====================
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({
     message: "Authentication Backend is running!"
   });
@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 // Signup
 // ====================
 
-app.post("/auth/signup", async (req, res) => {
+app.post("/api/auth/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
@@ -85,7 +85,7 @@ app.post("/auth/signup", async (req, res) => {
 // Login
 // ====================
 
-app.post("/auth/login", async (req, res) => {
+app.post("/api/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -160,7 +160,7 @@ app.post("/auth/login", async (req, res) => {
 // Protected Route
 // ====================
 
-app.get("/auth/me", authenticateToken, (req, res) => {
+app.get("/api/auth/me", authenticateToken, (req, res) => {
   const user = users.find(
     (user) => user.id === req.user.id
   );
