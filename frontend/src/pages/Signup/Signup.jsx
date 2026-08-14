@@ -1,5 +1,8 @@
 import { useState } from "react";
 import "./Signup.css";
+
+const API_URL = "https://full-auth-app.vercel.app";
+
 function Signup() {
   const [formData, setFormData] = useState({
     name: "",
@@ -26,7 +29,6 @@ function Signup() {
 
     const { name, email, password, confirmPassword } = formData;
 
-    // Validation
     if (!name || !email || !password || !confirmPassword) {
       setError("All fields are required.");
       return;
@@ -43,20 +45,17 @@ function Signup() {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/auth/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            password,
-          }),
-        }
-      );
+      const response = await fetch(`${API_URL}/auth/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
 
       const data = await response.json();
 
@@ -73,7 +72,7 @@ function Signup() {
         password: "",
         confirmPassword: "",
       });
-    } catch (error) {
+    } catch {
       setError("Cannot connect to the server.");
     }
   }
