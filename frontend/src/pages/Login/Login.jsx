@@ -2,6 +2,8 @@ import "./Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const API_URL = "https://full-auth-app.vercel.app";
+
 function Login() {
   const navigate = useNavigate();
 
@@ -32,19 +34,16 @@ function Login() {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        }
-      );
+      const response = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
 
       const data = await response.json();
 
@@ -57,15 +56,11 @@ function Login() {
       localStorage.setItem("token", data.token);
 
       // Save user information
-      localStorage.setItem(
-        "user",
-        JSON.stringify(data.user)
-      );
+      localStorage.setItem("user", JSON.stringify(data.user));
 
       // Go to dashboard
       navigate("/dashboard");
-
-    } catch (error) {
+    } catch {
       setError("Cannot connect to the server.");
     }
   }
@@ -75,7 +70,6 @@ function Login() {
       <h1>Welcome Back</h1>
 
       <form onSubmit={handleSubmit}>
-
         <input
           type="email"
           name="email"
@@ -92,16 +86,11 @@ function Login() {
           onChange={handleChange}
         />
 
-        {error && (
-          <p className="error">
-            {error}
-          </p>
-        )}
+        {error && <p className="error">{error}</p>}
 
         <button type="submit">
           Login
         </button>
-
       </form>
     </div>
   );
