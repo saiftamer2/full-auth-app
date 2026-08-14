@@ -2,8 +2,6 @@ import "./Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "/api/auth/login";
-
 function Login() {
   const navigate = useNavigate();
 
@@ -13,6 +11,7 @@ function Login() {
   });
 
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function handleChange(e) {
     setFormData({
@@ -33,8 +32,10 @@ function Login() {
       return;
     }
 
+    setLoading(true);
+
     try {
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,16 +53,18 @@ function Login() {
         return;
       }
 
-      // Save JWT token
       localStorage.setItem("token", data.token);
 
-      // Save user information
-      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem(
+        "user",
+        JSON.stringify(data.user)
+      );
 
-      // Go to dashboard
       navigate("/dashboard");
-    } catch {
+    } catch (error) {
       setError("Cannot connect to the server.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -76,6 +79,7 @@ function Login() {
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
+          disabled={loading}
         />
 
         <input
@@ -84,12 +88,17 @@ function Login() {
           placeholder="Password"
           value={formData.password}
           onChange={handleChange}
+          disabled={loading}
         />
 
-        {error && <p className="error">{error}</p>}
+        {error && (
+          <p className="error">
+            {error}
+          </p>
+        )}
 
-        <button type="submit">
-          Login
+        <button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
         </button>
       </form>
     </div>

@@ -1,8 +1,6 @@
 import { useState } from "react";
 import "./Signup.css";
 
-const API_URL = "/api/auth/login";
-
 function Signup() {
   const [formData, setFormData] = useState({
     name: "",
@@ -13,6 +11,7 @@ function Signup() {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function handleChange(e) {
     setFormData({
@@ -44,8 +43,10 @@ function Signup() {
       return;
     }
 
+    setLoading(true);
+
     try {
-      const response = await fetch(`${API_URL}/auth/signup`, {
+      const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,8 +73,10 @@ function Signup() {
         password: "",
         confirmPassword: "",
       });
-    } catch {
+    } catch (error) {
       setError("Cannot connect to the server.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -88,6 +91,7 @@ function Signup() {
           placeholder="Name"
           value={formData.name}
           onChange={handleChange}
+          disabled={loading}
         />
 
         <input
@@ -96,6 +100,7 @@ function Signup() {
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
+          disabled={loading}
         />
 
         <input
@@ -104,6 +109,7 @@ function Signup() {
           placeholder="Password"
           value={formData.password}
           onChange={handleChange}
+          disabled={loading}
         />
 
         <input
@@ -112,14 +118,15 @@ function Signup() {
           placeholder="Confirm Password"
           value={formData.confirmPassword}
           onChange={handleChange}
+          disabled={loading}
         />
 
         {error && <p className="error">{error}</p>}
 
         {success && <p className="success">{success}</p>}
 
-        <button type="submit">
-          Sign Up
+        <button type="submit" disabled={loading}>
+          {loading ? "Creating Account..." : "Sign Up"}
         </button>
       </form>
     </div>

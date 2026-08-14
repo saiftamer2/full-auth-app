@@ -12,8 +12,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 5000;
-
 // ====================
 // Home Route
 // ====================
@@ -119,7 +117,7 @@ app.post("/auth/login", async (req, res) => {
     }
 
     if (!process.env.JWT_SECRET) {
-      console.error("JWT_SECRET is missing from .env");
+      console.error("JWT_SECRET is missing.");
 
       return res.status(500).json({
         message: "JWT secret is not configured."
@@ -184,11 +182,7 @@ app.get("/auth/me", authenticateToken, (req, res) => {
 });
 
 // ====================
-// Start Server
+// Export App for Vercel
 // ====================
 
-app.listen(PORT, () => {
-  console.log(
-    `Server is running on http://localhost:${PORT}`
-  );
-});
+module.exports = app;
