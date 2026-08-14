@@ -5,7 +5,7 @@ A full-stack authentication application built as part of an internship task.
 The project demonstrates user signup, login, password hashing, JWT authentication, protected routes, and logout functionality.
 
 ## 🌐 Live Demo
-https://full-auth-app-1qti.vercel.app/signup
+[https://full-auth-app-1qti.vercel.app/signup](https://full-auth-app-1qti.vercel.app/)
 
 ## Features
 
