@@ -4,6 +4,9 @@ A full-stack authentication application built as part of an internship task.
 
 The project demonstrates user signup, login, password hashing, JWT authentication, protected routes, and logout functionality.
 
+## 🌐 Live Demo
+https://full-auth-app-88js.vercel.app/
+
 ## Features
 
 - User signup
